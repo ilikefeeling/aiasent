@@ -10,6 +10,23 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// Mobile menu toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+  // Auto-close menu on link click
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+}
+
 // Intersection Observer for scroll animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -20,7 +37,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.problem-card, .feature-card, .tier-card, .solution-item, .model-card').forEach(el => {
+document.querySelectorAll('.problem-card, .feature-card, .tier-card, .solution-item, .model-card, .op-step, .stl-node, .formula-pillar, .formula-result, .bento-card').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(24px)';
   el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -53,10 +70,26 @@ if (chartWrap) {
 }
 
 // Smooth stagger for grid items
-document.querySelectorAll('.problem-grid, .features-grid, .tier-grid').forEach(grid => {
+document.querySelectorAll('.problem-grid, .features-grid, .tier-grid, .bento-grid').forEach(grid => {
   const items = grid.children;
   Array.from(items).forEach((item, i) => {
     item.style.transitionDelay = `${i * 0.1}s`;
+  });
+});
+
+// 6-step timeline stagger
+document.querySelectorAll('.op-timeline').forEach(timeline => {
+  const steps = timeline.querySelectorAll('.op-step');
+  steps.forEach((step, i) => {
+    step.style.transitionDelay = `${i * 0.12}s`;
+  });
+});
+
+// Settlement flow stagger
+document.querySelectorAll('.settlement-flow').forEach(flow => {
+  const nodes = flow.querySelectorAll('.stl-node');
+  nodes.forEach((node, i) => {
+    node.style.transitionDelay = `${i * 0.15}s`;
   });
 });
 
