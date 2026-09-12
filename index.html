@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aiasent — AI Token MVNO 플랫폼 | On-Device SLM × MCP 지식자산화</title>
+  <meta name="description" content="'AI Token MVNO 플랫폼' On-Device 경량 SLM과 MCP 기반 개인 지식자산화, 그리고 제휴 수수료 정산 엔진을 결합하여 개인의 AI 토큰 비용 최소화 실현" />
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="util-bar">정부지원사업 R&D 과제 출품 기술 솔루션 — Aiasent.com</div>
+
+  <!-- Navigation -->
+  <header id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">
+        <span class="logo-mark">⚡</span>
+        <span class="logo-text">Aiasent<span class="logo-dot">.</span></span>
+      </a>
+
+      <nav class="nav-pills" id="navPills">
+        <button class="nav-pill active" data-target="step-mcp">
+          <span class="pill-num">01</span> MCP
+        </button>
+        <button class="nav-pill" data-target="step-routing">
+          <span class="pill-num">02</span> ROUTING
+        </button>
+        <button class="nav-pill" data-target="step-settlement">
+          <span class="pill-num">03</span> SETTLEMENT
+        </button>
+      </nav>
+
+      <div class="nav-right">
+        <button class="btn-summary-nav" id="openModal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          과제 요약서
+        </button>
+        <a href="#step-mcp" class="btn-cta-nav">데모 체험 →</a>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="메뉴">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ======================== HERO ======================== -->
+  <section id="hero">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Left -->
+        <div class="hero-left">
+          <div class="hero-tag">AI TOKEN MVNO PLATFORM</div>
+          <h1 class="hero-title">
+            AI 비용,<br/>
+            <span class="accent">0원</span>으로<br/>
+            만듭니다.
+          </h1>
+          <p class="hero-sub">
+            On-Device SLM × MCP 지식자산화 × 제휴 수수료 정산 엔진을 결합하여 개인의 AI 토큰 비용을 구조적으로 최소화합니다.
+          </p>
+          <a href="#step-mcp" class="hero-cta">
+            어떻게 가능한지 보기
+            <span class="arrow">↓</span>
+          </a>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="val"><span class="counter" data-target="85">0</span><span class="unit">%+</span></span>
+              <span class="label">로컬 SLM 처리율</span>
+            </div>
+            <div class="hero-stat">
+              <span class="val">&lt;<span class="counter" data-target="150">0</span><span class="unit">ms</span></span>
+              <span class="label">On-Device 응답속도</span>
+            </div>
+            <div class="hero-stat">
+              <span class="val">₩<span class="counter" data-target="0">0</span></span>
+              <span class="label">사용자 최종 비용</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right — Live Cost Widget -->
+        <div class="hero-widget anim-target">
+          <div class="widget-header">
+            <span>실시간 비용 정산 시뮬레이터</span>
+            <span class="widget-live">LIVE</span>
+          </div>
+          <div class="widget-body">
+            <div class="widget-cost-row">
+              <span class="wcr-label">이번 달 총 AI 질의</span>
+              <span class="wcr-value">2,180회</span>
+            </div>
+            <div class="widget-cost-row">
+              <span class="wcr-label">로컬 SLM 처리 (비용 ₩0)</span>
+              <span class="wcr-value text-emerald">1,842회 (84.5%)</span>
+            </div>
+            <div class="widget-cost-row">
+              <span class="wcr-label">클라우드 API 비용 발생</span>
+              <span class="wcr-value cost">-₩1,850</span>
+            </div>
+            <div class="widget-cost-row">
+              <span class="wcr-label">제휴 수수료 수익 (CPA/CPS)</span>
+              <span class="wcr-value revenue">+₩6,200</span>
+            </div>
+            <div class="widget-result">
+              <div class="widget-result-label">사용자 최종 부담금</div>
+              <div class="widget-result-num">₩0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== 01 MCP ======================== -->
+  <section class="step-section" id="step-mcp">
+    <div class="container">
+      <div class="step-header anim-target">
+        <span class="step-num">01</span>
+        <span class="step-title-text">MCP 지식 수집 & 자산화</span>
+      </div>
+      <div class="step-grid">
+        <!-- Text -->
+        <div class="step-text">
+          <h2 class="step-headline">
+            당신이 잠든 사이,<br/>
+            <span class="dim">MCP가 지식을</span><br/>
+            만듭니다.
+          </h2>
+          <div class="step-points">
+            <div class="step-point">
+              <span class="sp-num">1.1</span>
+              <span>로컬 파일(PDF, DOCX, XLSX), 브라우저 활동, 노션 데이터를 <strong>MCP 표준 프로토콜</strong>로 자동 수집·벡터화</span>
+            </div>
+            <div class="step-point">
+              <span class="sp-num">1.2</span>
+              <span>Anthropic 개방 표준 규격 채택 — 비정형 데이터 <strong>자동 청킹 & 임베딩</strong></span>
+            </div>
+            <div class="step-point">
+              <span class="sp-num">1.3</span>
+              <span><strong>Zero-Knowledge</strong> 디바이스 로컬 암호화 — 클라우드 전송 0건</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FIG.1 -->
+        <div class="step-fig">
+          <span class="fig-label">FIG.1 — MCP 커넥터 파이프라인</span>
+          <div class="mcp-connectors" id="mcpConnectors">
+            <div class="mcp-conn" data-delay="0">
+              <span class="conn-icon">📁</span>
+              <div class="conn-info">
+                <span class="conn-name">로컬 업무 문서</span>
+                <span class="conn-desc">342개 파일 — PDF, Markdown, XLSX</span>
+              </div>
+              <span class="conn-status">동기화됨 ✓</span>
+            </div>
+            <div class="mcp-conn" data-delay="200">
+              <span class="conn-icon">🌐</span>
+              <div class="conn-info">
+                <span class="conn-name">브라우저 리서치 스크랩</span>
+                <span class="conn-desc">최근 14일 — 1,280개 텍스트 청크</span>
+              </div>
+              <span class="conn-status">실시간 ✓</span>
+            </div>
+            <div class="mcp-conn" data-delay="400">
+              <span class="conn-icon">📝</span>
+              <div class="conn-info">
+                <span class="conn-name">Notion 워크스페이스</span>
+                <span class="conn-desc">MCP 프로토콜 보안 연결</span>
+              </div>
+              <span class="conn-status">암호화 ✓</span>
+            </div>
+          </div>
+
+          <div class="mcp-graph" id="mcpGraph">
+            <div class="graph-node-center">
+              <span class="gn-icon">🧠</span>
+              <span class="gn-label">나의 지식 자산</span>
+            </div>
+            <div class="orbit-item o1">프로젝트 기획서</div>
+            <div class="orbit-item o2">예산 계획표</div>
+            <div class="orbit-item o3">IT 장비 비교 메모</div>
+            <div class="orbit-item o4">미팅 녹취록</div>
+          </div>
+
+          <button class="btn-simulate" id="btnSimSync">
+            + 새 문서 드롭 및 실시간 벡터화 시뮬레이션
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== 02 ROUTING ======================== -->
+  <section class="step-section" id="step-routing">
+    <div class="container">
+      <div class="step-header anim-target">
+        <span class="step-num">02</span>
+        <span class="step-title-text">스마트 하이브리드 라우팅</span>
+      </div>
+      <div class="step-grid">
+        <!-- Text -->
+        <div class="step-text">
+          <h2 class="step-headline">
+            85%는 기기에서 즉시,<br/>
+            <span class="dim">단 15%만</span><br/>
+            클라우드로.
+          </h2>
+          <div class="step-points">
+            <div class="step-point">
+              <span class="sp-num">2.1</span>
+              <span><strong>4-bit 양자화 SLM</strong>이 WebGPU/NPU로 로컬 가속 — RAM 1.8GB 미만 동작</span>
+            </div>
+            <div class="step-point">
+              <span class="sp-num">2.2</span>
+              <span>복잡도 자동 판정 엔진이 <strong>로컬(₩0) vs 클라우드</strong> 실시간 분기 결정</span>
+            </div>
+            <div class="step-point">
+              <span class="sp-num">2.3</span>
+              <span>클라우드 이관 시에도 <strong>제휴 수수료가 비용을 대납</strong> — 사용자 부담 제로</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FIG.2 -->
+        <div class="step-fig">
+          <span class="fig-label">FIG.2 — 하이브리드 라우팅 시뮬레이터</span>
+
+          <div class="gauge-box">
+            <div class="gauge-top">
+              <span class="gauge-top-label">복잡도 판정 게이지</span>
+              <span class="gauge-state text-emerald" id="gaugeState">로컬 SLM 영역 (24%)</span>
+            </div>
+            <div class="gauge-track">
+              <div class="gauge-fill" id="gaugeFill" style="width:24%"></div>
+            </div>
+            <div class="gauge-legend">
+              <span>0~80% : 로컬 SLM (₩0)</span>
+              <span>80~100% : 클라우드 LLM</span>
+            </div>
+          </div>
+
+          <div class="sample-btns">
+            <button class="btn-sample" data-type="local" data-score="28">
+              Q1. "지난달 회의록에서 AI 서버 예산 항목 뽑아줘" — 로컬 처리
+            </button>
+            <button class="btn-sample" data-type="cloud" data-score="88">
+              Q2. "분산 아키텍처 다이어그램 및 알고리즘 검증해줘" — 클라우드 분기
+            </button>
+          </div>
+
+          <div class="chat-area" id="chatArea">
+            <div class="chat-msg-sys">
+              <span class="sys-badge">System</span>
+              <span>샘플 질문을 클릭하여 라우팅 분기를 확인하세요.</span>
+            </div>
+            <div id="chatConv"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== ACCENT CARD ======================== -->
+  <div class="accent-card">
+    <div class="container">
+      <div class="accent-inner anim-target">
+        <p class="accent-quote">
+          "로컬 SLM이 85% 질의를 처리할 때,<br/>
+          사용자의 클라우드 토큰 비용은 <em>월 ₩1,500 이하</em>로 떨어집니다.<br/>
+          이 비용은 제휴 수수료로 <em>완전히 상쇄</em>됩니다."
+        </p>
+        <p class="accent-source">— Aiasent 내부 실측 데이터 (N=300, 클로즈드 테스트)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== 03 SETTLEMENT ======================== -->
+  <section class="step-section" id="step-settlement">
+    <div class="container">
+      <div class="step-header anim-target">
+        <span class="step-num">03</span>
+        <span class="step-title-text">제휴 정산 → 비용 완전 상쇄</span>
+      </div>
+      <div class="step-grid">
+        <!-- Text -->
+        <div class="step-text">
+          <h2 class="step-headline">
+            남은 비용마저<br/>
+            <span class="dim">수수료가</span><br/>
+            상쇄합니다.
+          </h2>
+          <div class="step-points">
+            <div class="step-point">
+              <span class="sp-num">3.1</span>
+              <span>로컬 AI가 분석한 <strong>익명화된 구매 의도(Intent)</strong>와 제휴사 직접 연결</span>
+            </div>
+            <div class="step-point">
+              <span class="sp-num">3.2</span>
+              <span>전환 기반 <strong>CPA/CPS 수수료</strong> 3~15% 수취 → 토큰비 자동 대납</span>
+            </div>
+            <div class="step-point">
+              <span class="sp-num">3.3</span>
+              <span>유저 1인당 <strong>월 순 공헌이익 +₩3,300</strong> — 무료 제공하면서도 플랫폼 흑자</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FIG.3 -->
+        <div class="step-fig">
+          <span class="fig-label">FIG.3 — 비용 수렴 정산 대시보드</span>
+
+          <div class="settle-equation" id="settleEquation">
+            <div class="eq-card cost">
+              <div class="eq-label">클라우드 비용</div>
+              <div class="eq-num">-₩1,500</div>
+            </div>
+            <div class="eq-sign">+</div>
+            <div class="eq-card revenue">
+              <div class="eq-label">제휴 수수료</div>
+              <div class="eq-num">+₩4,800</div>
+            </div>
+            <div class="eq-sign">=</div>
+            <div class="eq-card result">
+              <div class="eq-label">사용자 부담</div>
+              <div class="eq-num" id="finalCostNum">₩0</div>
+            </div>
+          </div>
+
+          <div class="settle-detail">
+            <div class="settle-row">
+              <span class="sr-label">로컬 SLM 처리 (비용 ₩0)</span>
+              <span class="sr-value text-emerald">1,842회 (84.5%)</span>
+            </div>
+            <div class="settle-row">
+              <span class="sr-label">클라우드 API 사용 총액</span>
+              <span class="sr-value text-red">₩1,850</span>
+            </div>
+            <div class="settle-row">
+              <span class="sr-label">제휴 인텐트 매칭 수익</span>
+              <span class="sr-value text-cyan">₩6,200</span>
+            </div>
+            <div class="settle-row highlight">
+              <span class="sr-label">💰 사용자 최종 부담금</span>
+              <span class="sr-value text-lime">₩0 (순이익 +₩4,350)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FIG.4 ROADMAP + CTA ======================== -->
+  <section class="roadmap-section" id="roadmap">
+    <div class="container">
+      <div class="roadmap-header anim-target">
+        <span class="rm-num">FIG.4</span>
+        <span class="rm-title">9개월 실행 로드맵</span>
+      </div>
+
+      <div class="timeline">
+        <!-- Phase 1 -->
+        <div class="timeline-phase">
+          <span class="tp-badge p1">PHASE 01</span>
+          <span class="tp-period">1 ~ 3개월차</span>
+          <span class="tp-title">핵심 기술 PoC & MVP</span>
+          <div class="tp-items">
+            <div class="tp-item">WebGPU/NPU 4-bit SLM 엔진 구축</div>
+            <div class="tp-item">MCP 지식 수집 커넥터 개발</div>
+            <div class="tp-item">특허 1건 출원</div>
+          </div>
+          <div class="tp-kpi">
+            <span class="tp-kpi-tag">KPI</span>
+            <span class="tp-kpi-val">테스터 300명 · 로컬 처리율 75%</span>
+          </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="timeline-phase featured">
+          <span class="tp-badge p2">PHASE 02</span>
+          <span class="tp-period">4 ~ 6개월차</span>
+          <span class="tp-title">스마트 라우터 상용화 & 첫 매출</span>
+          <div class="tp-items">
+            <div class="tp-item">하이브리드 라우터 상용화</div>
+            <div class="tp-item">제휴 카테고리 4개 분야 확장</div>
+            <div class="tp-item">첫 CPA 정산 매출 발생</div>
+          </div>
+          <div class="tp-kpi">
+            <span class="tp-kpi-tag">KPI</span>
+            <span class="tp-kpi-val">MAU 3,000 · CVR 3.5% · 토큰 85% 절감</span>
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="timeline-phase">
+          <span class="tp-badge p3">PHASE 03</span>
+          <span class="tp-period">7 ~ 9개월차</span>
+          <span class="tp-title">정식 론칭 & B2B 확장</span>
+          <div class="tp-items">
+            <div class="tp-item">한국어 비즈니스 파인튜닝 탑재</div>
+            <div class="tp-item">B2B 프라이빗 워크스페이스 출시</div>
+            <div class="tp-item">TIPS 투자 연계</div>
+          </div>
+          <div class="tp-kpi">
+            <span class="tp-kpi-tag">KPI</span>
+            <span class="tp-kpi-val">MAU 10,000 · 월매출 500만원+ · 외부의존 10%↓</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-area">
+        <button class="btn-cta-big primary" id="openModalCTA">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          과제 기술 요약서 전문 보기
+        </button>
+        <a href="mailto:ilikepeople@icloud.com" class="btn-cta-big secondary">contact@aiasent.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>© 2025 Aiasent.com — 정부지원사업 과제 제출 및 기술 설명용</span>
+        <a href="mailto:ilikepeople@icloud.com">contact@aiasent.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== 4-TAB MODAL ======================== -->
+  <div class="modal-backdrop" id="summaryModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-area">
+          <span class="modal-tag">심사위원 열람용 · 과제 기술 요약서</span>
+          <h3>Aiasent 기술 및 사업화 종합 요약</h3>
+        </div>
+        <button class="modal-close" id="closeModal">&times;</button>
+      </div>
+
+      <div class="modal-tabs" id="modalTabs">
+        <button class="modal-tab active" data-panel="panel-tech">기술 상세</button>
+        <button class="modal-tab" data-panel="panel-market">시장 & 문제</button>
+        <button class="modal-tab" data-panel="panel-biz">비즈니스 모델</button>
+        <button class="modal-tab" data-panel="panel-roadmap">로드맵 상세</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Tab 1: 기술 상세 -->
+        <div class="modal-panel active" id="panel-tech">
+          <div class="modal-section">
+            <h4>📌 과제 공식 정의</h4>
+            <p class="modal-quote">
+              "'AI Token MVNO 플랫폼' On-Device 경량 SLM과 MCP 기반 개인 지식자산화, 그리고 제휴 수수료 정산 엔진을 결합하여 개인의 AI 토큰 비용 최소화 실현"
+            </p>
+          </div>
+          <div class="modal-section">
+            <h4>🔧 4-Layer 핵심 아키텍처</h4>
+            <ul class="modal-list">
+              <li><strong>Layer 01 — On-Device SLM 추론 엔진:</strong> 4-bit 양자화(AWQ), WebGPU/NPU 가속, RAM 1.8GB 미만 동작, 150ms 이내 로컬 응답. 오프라인 동작 보장.</li>
+              <li><strong>Layer 02 — MCP 지식 자산화 엔진:</strong> Anthropic 개방 표준 MCP(Model Context Protocol) 기반. 로컬 파일/노션/슬랙/브라우저 데이터를 비동기 수집·청킹·임베딩하여 Zero-ETL 지식 그래프 자동 구축.</li>
+              <li><strong>Layer 03 — 로컬 프라이빗 Vector DB:</strong> SQLite-VSS 온디바이스 스토리지. Zero-Knowledge 암호화. BM25 + 밀집 벡터 하이브리드 검색으로 초개인화 RAG 실현.</li>
+              <li><strong>Layer 04 — Intelligent Hybrid Router:</strong> 사용자 질의의 복잡도와 프라이버시 요구도를 실시간 스코어링. 80% 이하는 로컬 SLM(₩0), 초과 시에만 클라우드 LLM 선택적 분기.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab 2: 시장 & 문제 -->
+        <div class="modal-panel" id="panel-market">
+          <div class="modal-section">
+            <h4>📊 해결하고자 하는 3대 문제</h4>
+            <ul class="modal-list">
+              <li><strong>토큰 인플레이션:</strong> 생성형 AI 사용량 비례 종량제 비용 폭증. 국내 AI 파워유저 월 지출 ₩70,000~350,000+. 소상공인과 헤비유저의 AI 활용 위축.</li>
+              <li><strong>개인 지식 종속:</strong> 사용자의 보고서, 대화, 메모가 클라우드 LLM 학습 원료로만 소모. 매 세션마다 동일 맥락 반복 입력(일평균 47분 낭비). 사내 기밀 유출 불안 상존.</li>
+              <li><strong>제휴 마케팅 한계:</strong> 서드파티 쿠키 종말로 기존 디스플레이 배너 CTR 0.1% 미만, CVR 0.12% 이하로 급락. 진성 고객 접점 확보 비용 폭증.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab 3: 비즈니스 모델 -->
+        <div class="modal-panel" id="panel-biz">
+          <div class="modal-section">
+            <h4>💰 AI Token MVNO 비용 상쇄 메커니즘</h4>
+            <p>알뜰폰(MVNO)이 통신망을 효율화하듯, Aiasent는 로컬 AI와 제휴 수수료를 결합해 지속 가능한 흑자 비즈니스를 완성합니다.</p>
+            <ul class="modal-list">
+              <li><strong>Unit Economics:</strong> 유저 1인당 월 토큰 비용 약 -₩1,500 / 제휴 수수료 수익 +₩4,800 / 순 공헌이익 <strong>+₩3,300</strong></li>
+              <li><strong>수익 구조:</strong> 로컬 AI가 분석한 익명화 구매 의도(Intent)와 제휴사 다이렉트 연결. 전환당 3~15% 수수료(CPA/CPS) 수취.</li>
+              <li><strong>프라이버시:</strong> Zero-Knowledge 익명화 처리 — 개인정보 없이 소비 맥락만 매칭.</li>
+            </ul>
+          </div>
+          <div class="modal-section">
+            <h4>📋 기존 솔루션 대비 비교</h4>
+            <table class="cmp-table">
+              <thead>
+                <tr>
+                  <th>비교 항목</th>
+                  <th>상용 클라우드 AI</th>
+                  <th>오픈소스 로컬 AI</th>
+                  <th class="col-us">Aiasent (당사)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cat">월 비용</td><td>$20+ 구독 + 종량제</td><td>무료 (고가 GPU 필요)</td><td class="col-us">₩0 (제휴 상쇄)</td></tr>
+                <tr><td class="cat">개인 지식 연동</td><td>불가 (매 세션 재입력)</td><td>수동 설정 필요</td><td class="col-us">MCP 자동 지식화</td></tr>
+                <tr><td class="cat">하이브리드 라우팅</td><td>단일 모델</td><td>로컬만 (고난도 한계)</td><td class="col-us">로컬↔클라우드 자동 분기</td></tr>
+                <tr><td class="cat">프라이버시</td><td>클라우드 전송 (유출 위험)</td><td>로컬 보안</td><td class="col-us">100% On-Device (Zero-Leak)</td></tr>
+                <tr><td class="cat">비즈니스 모델</td><td>고객 요금 징수</td><td>수익 모델 없음</td><td class="col-us">MVNO 정산 (유저 흑자)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 4: 로드맵 상세 -->
+        <div class="modal-panel" id="panel-roadmap">
+          <div class="modal-section">
+            <h4>🗓️ 협약 기간(9개월) 상세 마일스톤</h4>
+            <ul class="modal-list">
+              <li><strong>Phase 1 (1~3개월):</strong> WebGPU/NPU SLM 엔진 구축 / MCP 커넥터 개발 / SQLite-VSS PoC / 전략 제휴사 2개소 파일럿 / <strong>특허 1건 출원</strong> / 클로즈드 테스터 300명</li>
+              <li><strong>Phase 2 (4~6개월):</strong> 하이브리드 스마트 라우터 상용화 / Zero-Knowledge 인텐트 매칭 엔진 / 로컬 절감율 85% 공인 검증 / 제휴 4개 분야 확장 / <strong>첫 CPA 매출 발생</strong> / MAU 3,000명</li>
+              <li><strong>Phase 3 (7~9개월):</strong> 한국어 비즈니스 파인튜닝 / B2B 프라이빗 워크스페이스 / 정식 론칭 / 토큰 100% 상쇄 입증 / B2B 5개소 파일럿 / <strong>TIPS 투자 연계</strong> / MAU 10,000명 / 월매출 500만원+</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-close" id="closeModalBottom">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
