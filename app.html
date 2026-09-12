@@ -19,48 +19,56 @@
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
     
     /* Sidebar */
-    .sidebar { width: 280px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; }
+    .sidebar { width: 280px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; z-index: 10; }
     .logo { font-size: 1.4rem; font-weight: bold; margin-bottom: 30px; display: flex; align-items: center; gap: 8px; color: white; text-decoration: none; }
     .logo-dot { color: var(--accent); }
     .nav-btn { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; text-align: left; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
     .nav-btn:hover { background: #2563EB; }
     
-    .sync-box { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-top: auto; border-left: 3px solid var(--accent); }
+    .sync-box { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-top: auto; border-left: 3px solid var(--accent); transition: 0.3s; }
     .sync-title { font-size: 0.9rem; font-weight: bold; margin-bottom: 10px; color: var(--accent); }
+    .sync-desc { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 15px; line-height: 1.4; }
     .sync-btn { background: var(--text); color: var(--bg); font-weight: bold; border: none; width: 100%; padding: 12px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; justify-content: center; transition: 0.2s; }
     .sync-btn:hover { background: #E2E8F0; }
     
+    .sync-btn.recommend { background: var(--green); color: #000; }
+    .sync-btn.recommend:hover { background: #059669; color: white; }
+
     /* Main Area */
     .main-area { flex: 1; display: flex; flex-direction: column; position: relative; }
     
     /* Top Bar */
-    .top-bar { height: 70px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 30px; }
+    .top-bar { height: 70px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 30px; background: var(--bg); z-index: 5;}
     .model-selector { font-size: 0.95rem; font-weight: 600; color: var(--text-dim); }
     
     /* Wallet Widget */
     .wallet-widget { display: flex; gap: 24px; font-size: 0.85rem; background: rgba(0,0,0,0.2); padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); }
     .wallet-item { display: flex; flex-direction: column; align-items: flex-end; }
     .wallet-label { color: var(--text-dim); font-size: 0.75rem; font-weight: 600; margin-bottom: 4px; }
-    .wallet-val { font-size: 1.1rem; font-weight: bold; font-family: monospace; }
+    .wallet-val { font-size: 1.1rem; font-weight: bold; font-family: monospace; transition: color 0.3s; }
     .val-reward { color: var(--green); }
     .val-cost { color: var(--red); }
     .val-net { color: var(--accent); font-size: 1.2rem; }
     
     /* Chat Area */
-    .chat-container { flex: 1; overflow-y: auto; padding: 40px 15%; display: flex; flex-direction: column; gap: 30px; }
-    .msg { display: flex; gap: 20px; line-height: 1.6; font-size: 1rem; }
+    .chat-container { flex: 1; overflow-y: auto; padding: 40px 15%; display: flex; flex-direction: column; gap: 30px; scroll-behavior: smooth; }
+    .msg { display: flex; gap: 20px; line-height: 1.6; font-size: 1rem; opacity: 0; animation: fadeIn 0.4s forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
     .msg.user .avatar { background: var(--border); color: white; }
     .msg.ai .avatar { background: var(--primary); color: white; }
     .avatar { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; font-size: 1rem; }
     .msg-content { flex: 1; padding-top: 5px; }
     
-    /* Routing Badge */
+    /* Routing Badge & Action Buttons */
     .routing-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(46,132,243,0.1); border: 1px solid var(--primary); color: #60A5FA; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 12px; }
     .routing-badge.local { border-color: var(--green); color: var(--green); background: rgba(16,185,129,0.1); }
     .routing-badge.cloud { border-color: #A855F7; color: #C084FC; background: rgba(168,85,247,0.1); }
     
+    .chat-action-btn { background: var(--green); color: black; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; cursor: pointer; margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s; }
+    .chat-action-btn:hover { background: #0ea5e9; color: white; }
+
     /* Input Area */
-    .input-area { padding: 30px 15%; padding-bottom: 50px; }
+    .input-area { padding: 30px 15%; padding-bottom: 50px; background: linear-gradient(transparent, var(--bg) 30%); }
     .preset-btns { display: flex; gap: 12px; margin-bottom: 15px; }
     .preset-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-dim); padding: 10px 20px; border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; font-weight: 500; }
     .preset-btn:hover { background: rgba(255,255,255,0.15); color: white; border-color: var(--text-dim); }
@@ -72,13 +80,38 @@
     /* Toast */
     .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--green); color: #000; padding: 16px 32px; border-radius: 30px; font-weight: 800; font-size: 1.05rem; box-shadow: 0 10px 30px rgba(16,185,129,0.4); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; display: flex; align-items: center; gap: 10px; }
     .toast.show { transform: translateX(-50%) translateY(0); }
+    
+    /* Loading Modal Overlay */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(4px); }
+    .modal-overlay.active { display: flex; }
+    .modal-content { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 40px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); width: 420px; }
+    .spinner { width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .modal-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+    .modal-desc { color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; }
+    .data-icons { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+    .data-icon { width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: black; font-weight: bold; font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
   </style>
 </head>
 <body>
 
-  <!-- 포인트 적립 팝업 (토스트 알림) -->
+  <!-- 팝업/토스트 알림 -->
   <div class="toast" id="toast">
-    <span>💰</span> 소비 패턴 분석 완료! 제휴 수익 <strong>+₩5,000</strong> 획득
+    <span id="toastIcon">💰</span> <span id="toastText">소비 패턴 분석 완료! 제휴 수익 <strong>+₩5,000</strong> 획득</span>
+  </div>
+
+  <!-- 데이터 연동 모달 -->
+  <div class="modal-overlay" id="syncModal">
+    <div class="modal-content">
+      <div class="spinner"></div>
+      <div class="modal-title">마이데이터 안전하게 연동 중...</div>
+      <div class="modal-desc" id="syncLog">쇼핑, 구독, 배달 결제 내역을<br/>On-Device 환경에서 암호화하여 분석합니다.</div>
+      <div class="data-icons">
+        <div class="data-icon" style="background:#E50914; color:white; font-size:1.2rem;">N</div>
+        <div class="data-icon" style="background:#2AC1BC; color:white;">배민</div>
+        <div class="data-icon" style="background:#111111; color:white;">쿠팡</div>
+      </div>
+    </div>
   </div>
 
   <div class="sidebar">
@@ -91,13 +124,13 @@
     
     <div style="flex:1"></div>
     
-    <!-- 수익 연동 시뮬레이션 영역 -->
-    <div class="sync-box">
-      <div class="sync-title">제휴 마케팅 연동</div>
-      <p style="font-size:0.8rem; color:var(--text-dim); margin-bottom:15px; line-height:1.4;">나의 쇼핑, 배달 소비 데이터를 연동하고 자동으로 제휴 수익을 창출하세요.</p>
+    <!-- 수익 연동/추천 시뮬레이션 영역 -->
+    <div class="sync-box" id="syncBox">
+      <div class="sync-title" id="boxTitle">제휴 마케팅 연동</div>
+      <p class="sync-desc" id="boxDesc">나의 쇼핑, 배달 소비 데이터를 연동하고 자동으로 제휴 수익을 창출하세요.</p>
       <button class="sync-btn" id="btnSync">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
-        소비 데이터 연동하기
+        <span>소비 데이터 연동하기</span>
       </button>
     </div>
   </div>
@@ -108,7 +141,6 @@
         작동 모델: <span style="color:var(--text); font-weight:bold;">스마트 하이브리드 라우팅 ⚡</span>
         <div style="font-size:0.75rem; color:var(--text-dim); margin-top:4px;">연동된 유료 엔진: ChatGPT, Claude 3.5, Gemini Pro, Grok 등</div>
       </div>
-      <!-- 실시간 자산 위젯 -->
       <div class="wallet-widget">
         <div class="wallet-item">
           <span class="wallet-label">발생한 AI 요금</span>
@@ -129,14 +161,13 @@
       <div class="msg ai">
         <div class="avatar">A.</div>
         <div class="msg-content">
-          안녕하세요! 무엇을 도와드릴까요?<br/>
-          (아래 버튼을 눌러 시뮬레이션을 진행해 보세요)
+          안녕하세요! Aiasent입니다. 무엇을 도와드릴까요?<br/>
+          (아래 버튼들을 눌러 피칭 영상용 시뮬레이션을 진행해 보세요)
         </div>
       </div>
     </div>
 
     <div class="input-area">
-      <!-- 시연용 단축 버튼 -->
       <div class="preset-btns">
         <button class="preset-btn" id="btnPreset1">[시연용] 간단한 질문 (내 폰에서 처리)</button>
         <button class="preset-btn" id="btnPreset2">[시연용] 복잡한 질문 (최적의 상용 AI로 자동 라우팅)</button>
@@ -170,13 +201,17 @@
       }
     }
 
-    // 시나리오 A: 제휴 연동 (수익 획득 시연)
-    document.getElementById('btnSync').addEventListener('click', () => {
+    function showToast(icon, text) {
       const toast = document.getElementById('toast');
+      document.getElementById('toastIcon').innerText = icon;
+      document.getElementById('toastText').innerHTML = text;
       toast.classList.add('show');
-      
+      setTimeout(() => { toast.classList.remove('show'); }, 4000);
+    }
+
+    function addPointsAnim(amount) {
       let start = currentReward;
-      let target = currentReward + 5000;
+      let target = currentReward + amount;
       let duration = 1200;
       let startTime = null;
       
@@ -184,19 +219,15 @@
         if(!startTime) startTime = time;
         let p = (time - startTime) / duration;
         if(p > 1) p = 1;
-        // ease-out 효과
         let easeOut = 1 - Math.pow(1 - p, 3);
         currentReward = Math.floor(start + (target - start) * easeOut);
         updateWallet();
         if(p < 1) requestAnimationFrame(anim);
       }
       requestAnimationFrame(anim);
-      
-      setTimeout(() => { toast.classList.remove('show'); }, 3500);
-    });
+    }
 
     const chatList = document.getElementById('chatList');
-    
     function addMsg(text, isUser=false) {
       const div = document.createElement('div');
       div.className = 'msg ' + (isUser ? 'user' : 'ai');
@@ -208,32 +239,88 @@
       chatList.scrollTop = chatList.scrollHeight;
     }
 
-    // 시나리오 B-1: 로컬 처리 (0원)
+    // 시나리오 A: 마이데이터 연동 -> 맞춤 상품 추천 시나리오로 변경
+    document.getElementById('btnSync').addEventListener('click', function() {
+      // 2단계: 상품 추천 시나리오 실행
+      if(this.classList.contains('recommend')) {
+        addMsg("나에게 필요한 맞춤 상품 추천해 줘.", true);
+        setTimeout(() => {
+          addMsg(`
+            <div class="routing-badge local">⚡ 내 소비 데이터 분석됨 (On-Device)</div><br/>
+            🛒 <strong>구매 주기 알림</strong><br/><br/>
+            회원님의 쿠팡 결제 내역을 분석한 결과, 평소 주문하시는 <strong>[제주 삼다수 2L x 12병]</strong>이 내일쯤 떨어질 것으로 예상됩니다.<br/><br/>
+            현재 15% 할인 특가가 진행 중입니다. 지금 바로 재주문하실까요?<br/>
+            <button class="chat-action-btn" onclick="buyItem(event)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              쿠팡에서 바로 구매하기 (리워드 +₩800)
+            </button>
+          `);
+        }, 1000);
+        return;
+      }
+
+      // 1단계: 초기 연동 모달 띄우기
+      const modal = document.getElementById('syncModal');
+      const log = document.getElementById('syncLog');
+      modal.classList.add('active');
+      
+      setTimeout(() => { 
+        log.innerHTML = "소비 패턴 추출 및 가공 완료...<br/>(AI 학습에 사용되지 않고 안전하게 처리됩니다)"; 
+      }, 1500);
+      
+      setTimeout(() => {
+        modal.classList.remove('active');
+        showToast('💰', '소비 패턴 분석 완료! 제휴 가입 리워드 <strong>+₩5,000</strong> 획득');
+        addPointsAnim(5000);
+
+        // 사이드바 박스를 "맞춤 추천 모드"로 변경
+        const boxTitle = document.getElementById('boxTitle');
+        const boxDesc = document.getElementById('boxDesc');
+        const syncBox = document.getElementById('syncBox');
+        
+        boxTitle.innerText = 'AI 맞춤 소비 추천';
+        boxTitle.style.color = 'var(--green)';
+        syncBox.style.borderLeftColor = 'var(--green)';
+        boxDesc.innerHTML = '연동된 소비 패턴을 바탕으로 필요한 상품을 적시에 추천하고 <strong>지속적인 제휴 수익</strong>을 창출합니다.';
+        
+        this.innerHTML = '🎁 오늘의 맞춤 추천 상품 보기';
+        this.classList.add('recommend');
+      }, 3500);
+    });
+
+    // 추천 상품 구매 클릭 시 리워드 획득
+    window.buyItem = function(e) {
+      e.target.innerText = "✓ 결제 완료! (리워드 적립됨)";
+      e.target.style.background = "#334155";
+      e.target.style.color = "white";
+      e.target.onclick = null;
+
+      showToast('🎉', '결제 성공! 제휴 수익 <strong>+₩800</strong> 추가 획득');
+      addPointsAnim(800);
+    }
+
+    // 시나리오 B-1: 로컬 처리
     document.getElementById('btnPreset1').addEventListener('click', () => {
       addMsg("지난주 주간 회의록 요약해줘.", true);
-      
       setTimeout(() => {
         addMsg(`
           <div class="routing-badge local">⚡ 내 기기 안에서 즉시 처리됨 (발생 비용: ₩0)</div><br/>
           지난주 회의록 요약입니다.<br/><br/>
           1. 프로젝트 A: 이번 달 15일 마감<br/>
-          2. 장비 도입: 300만 원 예산안 승인 대기 중<br/><br/>
-          추가로 궁금한 점이 있으신가요?
+          2. 장비 도입: 300만 원 예산안 승인 대기 중
         `);
       }, 800);
     });
 
-    // 시나리오 B-2: 외부 유료 라우팅 (비용 발생 및 상쇄 시연)
+    // 시나리오 B-2: 외부 유료 라우팅
     document.getElementById('btnPreset2').addEventListener('click', () => {
       addMsg("현재 시장 트렌드 데이터를 분석해서 우리 회사의 내년 1분기 재무 프로젝션을 세워줘.", true);
-      
       setTimeout(() => {
         addMsg(`
           <div class="routing-badge cloud">🚀 질문 난이도 높음: 최적의 유료 엔진(Claude 3.5 Sonnet)으로 자동 연결됨</div><br/>
           요청하신 재무 프로젝션 분석 결과입니다.<br/><br/>
           시장 트렌드와 과거 데이터를 심층 분석한 결과, 내년 1분기 예상 매출은 15% 상승할 것으로 예측됩니다... (이하 생략)
         `);
-        
         currentCost += 150;
         updateWallet();
       }, 1500);
