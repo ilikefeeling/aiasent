@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Aiasent App Demo</title>
+  <style>
+    :root {
+      --bg: #0F172A;
+      --panel: #1E293B;
+      --text: #F8FAFC;
+      --text-dim: #94A3B8;
+      --primary: #2E84F3;
+      --accent: #D2F537;
+      --border: #334155;
+      --green: #10B981;
+      --red: #EF4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
+    
+    /* Sidebar */
+    .sidebar { width: 280px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; }
+    .logo { font-size: 1.4rem; font-weight: bold; margin-bottom: 30px; display: flex; align-items: center; gap: 8px; color: white; text-decoration: none; }
+    .logo-dot { color: var(--accent); }
+    .nav-btn { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; text-align: left; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-btn:hover { background: #2563EB; }
+    
+    .sync-box { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-top: auto; border-left: 3px solid var(--accent); }
+    .sync-title { font-size: 0.9rem; font-weight: bold; margin-bottom: 10px; color: var(--accent); }
+    .sync-btn { background: var(--text); color: var(--bg); font-weight: bold; border: none; width: 100%; padding: 12px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; justify-content: center; transition: 0.2s; }
+    .sync-btn:hover { background: #E2E8F0; }
+    
+    /* Main Area */
+    .main-area { flex: 1; display: flex; flex-direction: column; position: relative; }
+    
+    /* Top Bar */
+    .top-bar { height: 70px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 30px; }
+    .model-selector { font-size: 0.95rem; font-weight: 600; color: var(--text-dim); }
+    
+    /* Wallet Widget */
+    .wallet-widget { display: flex; gap: 24px; font-size: 0.85rem; background: rgba(0,0,0,0.2); padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); }
+    .wallet-item { display: flex; flex-direction: column; align-items: flex-end; }
+    .wallet-label { color: var(--text-dim); font-size: 0.75rem; font-weight: 600; margin-bottom: 4px; }
+    .wallet-val { font-size: 1.1rem; font-weight: bold; font-family: monospace; }
+    .val-reward { color: var(--green); }
+    .val-cost { color: var(--red); }
+    .val-net { color: var(--accent); font-size: 1.2rem; }
+    
+    /* Chat Area */
+    .chat-container { flex: 1; overflow-y: auto; padding: 40px 15%; display: flex; flex-direction: column; gap: 30px; }
+    .msg { display: flex; gap: 20px; line-height: 1.6; font-size: 1rem; }
+    .msg.user .avatar { background: var(--border); color: white; }
+    .msg.ai .avatar { background: var(--primary); color: white; }
+    .avatar { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; font-size: 1rem; }
+    .msg-content { flex: 1; padding-top: 5px; }
+    
+    /* Routing Badge */
+    .routing-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(46,132,243,0.1); border: 1px solid var(--primary); color: #60A5FA; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 12px; }
+    .routing-badge.local { border-color: var(--green); color: var(--green); background: rgba(16,185,129,0.1); }
+    .routing-badge.cloud { border-color: #A855F7; color: #C084FC; background: rgba(168,85,247,0.1); }
+    
+    /* Input Area */
+    .input-area { padding: 30px 15%; padding-bottom: 50px; }
+    .preset-btns { display: flex; gap: 12px; margin-bottom: 15px; }
+    .preset-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-dim); padding: 10px 20px; border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; font-weight: 500; }
+    .preset-btn:hover { background: rgba(255,255,255,0.15); color: white; border-color: var(--text-dim); }
+    
+    .input-box { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 18px 24px; display: flex; align-items: flex-end; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .input-box textarea { flex: 1; background: transparent; border: none; color: white; font-size: 1.05rem; resize: none; outline: none; height: 26px; font-family: inherit; }
+    .send-btn { background: white; color: black; border: none; width: 36px; height: 36px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-left: 15px; }
+    
+    /* Toast */
+    .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--green); color: #000; padding: 16px 32px; border-radius: 30px; font-weight: 800; font-size: 1.05rem; box-shadow: 0 10px 30px rgba(16,185,129,0.4); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; display: flex; align-items: center; gap: 10px; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- 포인트 적립 팝업 (토스트 알림) -->
+  <div class="toast" id="toast">
+    <span>💰</span> 소비 패턴 분석 완료! 제휴 수익 <strong>+₩5,000</strong> 획득
+  </div>
+
+  <div class="sidebar">
+    <a href="index.html" class="logo">
+      <span style="font-size:1.6rem">⚡</span> Aiasent<span class="logo-dot">.</span>
+    </a>
+    <button class="nav-btn">
+      새 대화 시작 <span>+</span>
+    </button>
+    
+    <div style="flex:1"></div>
+    
+    <!-- 수익 연동 시뮬레이션 영역 -->
+    <div class="sync-box">
+      <div class="sync-title">제휴 마케팅 연동</div>
+      <p style="font-size:0.8rem; color:var(--text-dim); margin-bottom:15px; line-height:1.4;">나의 쇼핑, 배달 소비 데이터를 연동하고 자동으로 제휴 수익을 창출하세요.</p>
+      <button class="sync-btn" id="btnSync">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+        소비 데이터 연동하기
+      </button>
+    </div>
+  </div>
+
+  <div class="main-area">
+    <div class="top-bar">
+      <div class="model-selector">
+        작동 모델: <span style="color:var(--text); font-weight:bold;">스마트 하이브리드 라우팅 ⚡</span>
+      </div>
+      <!-- 실시간 자산 위젯 -->
+      <div class="wallet-widget">
+        <div class="wallet-item">
+          <span class="wallet-label">발생한 AI 요금</span>
+          <span class="wallet-val val-cost" id="valCost">₩0</span>
+        </div>
+        <div class="wallet-item">
+          <span class="wallet-label">누적 제휴 수익</span>
+          <span class="wallet-val val-reward" id="valReward">₩0</span>
+        </div>
+        <div class="wallet-item">
+          <span class="wallet-label">이번 달 청구액</span>
+          <span class="wallet-val val-net" id="valNet">₩0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-container" id="chatList">
+      <div class="msg ai">
+        <div class="avatar">A.</div>
+        <div class="msg-content">
+          안녕하세요! 무엇을 도와드릴까요?<br/>
+          (아래 버튼을 눌러 시뮬레이션을 진행해 보세요)
+        </div>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <!-- 시연용 단축 버튼 -->
+      <div class="preset-btns">
+        <button class="preset-btn" id="btnPreset1">간단한 질문 (내 폰에서 처리)</button>
+        <button class="preset-btn" id="btnPreset2">어려운 질문 (챗GPT로 토스)</button>
+      </div>
+      <div class="input-box">
+        <textarea placeholder="메시지를 입력하세요..." id="chatInput" readonly></textarea>
+        <button class="send-btn" disabled>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentCost = 0;
+    let currentReward = 0;
+    
+    const fmt = (num) => '₩' + num.toLocaleString();
+    
+    function updateWallet() {
+      document.getElementById('valCost').innerText = '-' + fmt(currentCost);
+      document.getElementById('valReward').innerText = '+' + fmt(currentReward);
+      let net = currentReward - currentCost;
+      let netEl = document.getElementById('valNet');
+      if(net >= 0) {
+        netEl.innerText = '₩0 (전액 방어)';
+        netEl.style.color = 'var(--accent)';
+      } else {
+        netEl.innerText = '-' + fmt(Math.abs(net));
+        netEl.style.color = 'var(--red)';
+      }
+    }
+
+    // 시나리오 A: 제휴 연동 (수익 획득 시연)
+    document.getElementById('btnSync').addEventListener('click', () => {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      
+      let start = currentReward;
+      let target = currentReward + 5000;
+      let duration = 1200;
+      let startTime = null;
+      
+      function anim(time) {
+        if(!startTime) startTime = time;
+        let p = (time - startTime) / duration;
+        if(p > 1) p = 1;
+        // ease-out 효과
+        let easeOut = 1 - Math.pow(1 - p, 3);
+        currentReward = Math.floor(start + (target - start) * easeOut);
+        updateWallet();
+        if(p < 1) requestAnimationFrame(anim);
+      }
+      requestAnimationFrame(anim);
+      
+      setTimeout(() => { toast.classList.remove('show'); }, 3500);
+    });
+
+    const chatList = document.getElementById('chatList');
+    
+    function addMsg(text, isUser=false) {
+      const div = document.createElement('div');
+      div.className = 'msg ' + (isUser ? 'user' : 'ai');
+      div.innerHTML = `
+        <div class="avatar">${isUser ? 'U' : 'A.'}</div>
+        <div class="msg-content">${text}</div>
+      `;
+      chatList.appendChild(div);
+      chatList.scrollTop = chatList.scrollHeight;
+    }
+
+    // 시나리오 B-1: 로컬 처리 (0원)
+    document.getElementById('btnPreset1').addEventListener('click', () => {
+      addMsg("지난주 주간 회의록 요약해줘.", true);
+      
+      setTimeout(() => {
+        addMsg(`
+          <div class="routing-badge local">⚡ 내 기기 안에서 즉시 처리됨 (발생 비용: ₩0)</div><br/>
+          지난주 회의록 요약입니다.<br/><br/>
+          1. 프로젝트 A: 이번 달 15일 마감<br/>
+          2. 장비 도입: 300만 원 예산안 승인 대기 중<br/><br/>
+          추가로 궁금한 점이 있으신가요?
+        `);
+      }, 800);
+    });
+
+    // 시나리오 B-2: 외부 유료 라우팅 (비용 발생 및 상쇄 시연)
+    document.getElementById('btnPreset2').addEventListener('click', () => {
+      addMsg("현재 시장 트렌드 데이터를 분석해서 우리 회사의 내년 1분기 재무 프로젝션을 세워줘.", true);
+      
+      setTimeout(() => {
+        addMsg(`
+          <div class="routing-badge cloud">🚀 질문 난이도 높음: ChatGPT-4o 유료 엔진으로 연결됨</div><br/>
+          요청하신 재무 프로젝션 분석 결과입니다.<br/><br/>
+          시장 트렌드와 과거 데이터를 심층 분석한 결과, 내년 1분기 예상 매출은 15% 상승할 것으로 예측됩니다... (이하 생략)
+        `);
+        
+        currentCost += 150;
+        updateWallet();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
