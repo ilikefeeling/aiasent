@@ -106,6 +106,7 @@
     <div class="top-bar">
       <div class="model-selector">
         작동 모델: <span style="color:var(--text); font-weight:bold;">스마트 하이브리드 라우팅 ⚡</span>
+        <div style="font-size:0.75rem; color:var(--text-dim); margin-top:4px;">연동된 유료 엔진: ChatGPT, Claude 3.5, Gemini Pro, Grok 등</div>
       </div>
       <!-- 실시간 자산 위젯 -->
       <div class="wallet-widget">
@@ -137,8 +138,8 @@
     <div class="input-area">
       <!-- 시연용 단축 버튼 -->
       <div class="preset-btns">
-        <button class="preset-btn" id="btnPreset1">간단한 질문 (내 폰에서 처리)</button>
-        <button class="preset-btn" id="btnPreset2">어려운 질문 (챗GPT로 토스)</button>
+        <button class="preset-btn" id="btnPreset1">[시연용] 간단한 질문 (내 폰에서 처리)</button>
+        <button class="preset-btn" id="btnPreset2">[시연용] 복잡한 질문 (최적의 상용 AI로 자동 라우팅)</button>
       </div>
       <div class="input-box">
         <textarea placeholder="메시지를 입력하세요..." id="chatInput" readonly></textarea>
@@ -228,7 +229,7 @@
       
       setTimeout(() => {
         addMsg(`
-          <div class="routing-badge cloud">🚀 질문 난이도 높음: ChatGPT-4o 유료 엔진으로 연결됨</div><br/>
+          <div class="routing-badge cloud">🚀 질문 난이도 높음: 최적의 유료 엔진(Claude 3.5 Sonnet)으로 자동 연결됨</div><br/>
           요청하신 재무 프로젝션 분석 결과입니다.<br/><br/>
           시장 트렌드와 과거 데이터를 심층 분석한 결과, 내년 1분기 예상 매출은 15% 상승할 것으로 예측됩니다... (이하 생략)
         `);
