@@ -70,15 +70,15 @@ img{max-width:100%;display:block}
    UTILITY BAR (최상단 띠)
    ============================ */
 .util-bar{
-  background:rgba(37,99,235,0.06);
-  border-bottom:1px solid var(--border);
+  background:transparent;
+  border-bottom:1px solid rgba(255,255,255,0.15);
   padding:7px 0;
   text-align:center;
   font-family:var(--mono);
   font-size:.72rem;
   font-weight:600;
   letter-spacing:.08em;
-  color:var(--cyan);
+  color:var(--text-inv-2);
   text-transform:uppercase;
   z-index:101;
   position:relative;
@@ -599,7 +599,7 @@ img{max-width:100%;display:block}
 }
 .accent-quote em{
   font-style:normal;
-  color:var(--lime);
+  color:#D2F537; /* Bright neon yellow/green for high contrast against blue */
   font-weight:800;
 }
 .accent-source{
